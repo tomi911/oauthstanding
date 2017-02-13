@@ -9,8 +9,17 @@ public class Main {
 
         /*
         Configuration config = Configuration.builder();
-
         OAuth.newContext(config);
+
+        AccessTokenRequest request = AccessTokenRequest.builder()
+            .grantType(password)
+            .clientId(clientId)
+            .clientSecret(secret)
+            .username(username)
+            .password(password)
+            .build();
+
+
     */
     }
 

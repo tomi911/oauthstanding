@@ -5,4 +5,9 @@ package oauthstanding.token;
  */
 public class AccessToken {
 
+    private final String value;
+    private final long creationTime;
+    private final long expirationTime;
+
+
 }
