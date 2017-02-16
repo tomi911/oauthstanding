@@ -1,4 +1,4 @@
-package oauthstanding.http;
+package oauthstanding.system;
 
 /**
  * Created by marcin on 13.02.17.
@@ -9,4 +9,5 @@ public class ErrorResponse {
     private String description;
     private String uri;
     private String state;
+
 }

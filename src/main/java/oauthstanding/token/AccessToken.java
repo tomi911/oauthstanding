@@ -3,11 +3,9 @@ package oauthstanding.token;
 /**
  * Created by marcin on 13.02.17.
  */
-public class AccessToken {
+public class AccessToken extends AbstractToken {
 
-    private final String value;
-    private final long creationTime;
-    private final long expirationTime;
-
-
+    public AccessToken(String value, long expirationTime) {
+        super(value, expirationTime);
+    }
 }
