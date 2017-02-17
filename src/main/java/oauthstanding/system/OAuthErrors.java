@@ -11,4 +11,8 @@ public class OAuthErrors {
         return unsupportedGrantType;
     }
 
+    public ErrorResponse errorResponseFromType(ErrorType errorType) {
+        return null;
+    }
+
 }

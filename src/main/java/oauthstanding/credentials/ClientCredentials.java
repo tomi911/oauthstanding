@@ -10,6 +10,8 @@ import java.util.stream.Stream;
 public interface ClientCredentials {
 
     String getClientId();
+    String getClientSecret();
+    Stream<String> getScopes();
     Stream<GrantType> getGrantTypes();
 
 }

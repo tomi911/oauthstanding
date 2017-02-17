@@ -1,15 +1,23 @@
 package oauthstanding.system;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Created by marcin on 13.02.17.
  */
-public class AccessTokenRequest {
+public class AccessTokenRequest implements OAuthRequest {
 
     private final GrantType grantType;
 
     private final String clientId, clientSecret, code, redirectUri, username, password, scope;
+
+    private boolean valid = true;
+    private List<ErrorCause> errors = new ArrayList<>();
 
     private AccessTokenRequest(Builder builder) {
         this.grantType = builder.grantType;
@@ -79,6 +87,57 @@ public class AccessTokenRequest {
             this.scope = s;
             return this;
         }
+    }
+
+    @Override
+    public boolean isValid() {
+
+        if(grantType == GrantType.UNRECOGNIZED) {
+            valid = false;
+        }
+        if(StringUtils.isBlank(clientId)) {
+            valid = false;
+        }
+        if(StringUtils.isBlank(clientSecret)) {
+            valid = false;
+        }
+
+        return valid;
+    }
+
+    @Override
+    public Optional<List<ErrorCause>> getErrors() {
+        return Optional.ofNullable(errors);
+    }
+
+    private boolean validationForCodeGrantType(AccessTokenRequest request) {
+
+        String code = request.getCode();
+        String redirectUri = request.getRedirectUri();
+
+        if(StringUtils.isBlank(code)) {
+            valid = false;
+        }
+        if(StringUtils.isBlank(redirectUri)) {
+            valid = false;
+        }
+
+        return false;
+    }
+
+    private boolean validationForResourceOwnerPasswordCredentialsGrantType(AccessTokenRequest request) {
+
+        String username = request.getUsername();
+        String password = request.getPassword();
+
+        if(StringUtils.isBlank(username)) {
+            valid = false;
+        }
+        if(StringUtils.isBlank(password)) {
+            valid = false;
+        }
+
+        return false;
     }
 
     public GrantType getGrantType() {

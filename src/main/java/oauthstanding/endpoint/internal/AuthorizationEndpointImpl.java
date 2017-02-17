@@ -1,6 +1,6 @@
 package oauthstanding.endpoint.internal;
 
-import oauthstanding.adapter.Generator;
+import oauthstanding.system.TokenGenerator;
 import oauthstanding.adapter.OAuthClientStoreAdapter;
 import oauthstanding.credentials.ResourceOwnerCredentials;
 import oauthstanding.endpoint.AuthorizationEndpoint;
@@ -18,7 +18,7 @@ public class AuthorizationEndpointImpl implements AuthorizationEndpoint {
     private Stream<ResponseType> responseTypes;
     private OAuthClientStoreAdapter clientStore;
     private OAuthErrors errorTypes;
-    private Generator generator;
+    private TokenGenerator generator;
 
     private Map<String, AuthorizationRequest> internalCache;
 
